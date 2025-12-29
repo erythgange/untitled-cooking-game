@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn0pekm6wjdw1"]
+
+[ext_resource type="Script" uid="uid://cviwgnsiyp363" path="res://player.gd" id="1_xhfnw"]
+[ext_resource type="Script" uid="uid://p464cd4kt6sv" path="res://camera.gd" id="2_kpjcp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kpjcp"]
+size = Vector3(0.775, 0.635, 1.01)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_xhfnw")
+
+[node name="InteractRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
+debug_shape_custom_color = Color(0.99607843, 0.03137255, 0, 0.105882354)
+debug_shape_thickness = 5
+
+[node name="HoldPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2363057, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_0rwas")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="capsule" type="MeshInstance3D" parent="Mesh"]
+mesh = SubResource("CapsuleMesh_xhfnw")
+skeleton = NodePath("../../Collision")
+
+[node name="box" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30877668, -0.371269)
+mesh = SubResource("BoxMesh_kpjcp")
+skeleton = NodePath("../..")
+
+[node name="Camera" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+top_level = true
+script = ExtResource("2_kpjcp")
+follow_target = NodePath("..")
+
+[node name="Camera3D" type="Camera3D" parent="Camera"]
+doppler_tracking = 2
+current = true
+fov = 90.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Camera"]
+spring_length = 3.0
+
+[node name="SpringPosition" type="Node3D" parent="Camera/SpringArm3D"]

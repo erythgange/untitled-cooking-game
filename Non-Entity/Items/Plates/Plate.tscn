@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://pucxf2lubt2"]
+
+[ext_resource type="Script" uid="uid://cuk46h5aqjfai" path="res://Non-Entity/Items/Plates/PlateNode.gd" id="1_2rh18"]
+[ext_resource type="FontFile" uid="uid://d1pae6xy5aw31" path="res://External/Fonts/JetBrainsMono[wght].ttf" id="1_ms7iv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2j2vn"]
+size = Vector3(1, 0.22, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2j2vn"]
+size = Vector3(1, 0.175, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2pnu7"]
+size = Vector3(0.9, 0.175, 0.9)
+
+[node name="Plate" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_2rh18")
+id = "Plate"
+ItemType = 1
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2j2vn")
+
+[node name="DebugLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67, 0)
+billboard = 1
+text = "DebugLabel"
+font = ExtResource("1_ms7iv")
+
+[node name="InteractPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
+mesh = SubResource("BoxMesh_2j2vn")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.055664063, 0)
+operation = 2
+mesh = SubResource("BoxMesh_2pnu7")

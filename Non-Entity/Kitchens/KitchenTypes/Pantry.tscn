@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://buytvkfkpl3xr"]
+
+[ext_resource type="Script" uid="uid://d1jkkkxa30b4i" path="res://Non-Entity/Kitchens/KitchenNodeScript.gd" id="1_13eim"]
+[ext_resource type="PackedScene" uid="uid://j6atit0h6jtr" path="res://Non-Entity/Items/Ingredients/Beef.tscn" id="2_3m277"]
+[ext_resource type="FontFile" uid="uid://d1pae6xy5aw31" path="res://External/Fonts/JetBrainsMono[wght].ttf" id="2_bpjs8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hd7rm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iwj1n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bpjs8"]
+size = Vector3(0.7, 0.185, 0.7)
+
+[node name="Pantry" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 11
+mass = 10.0
+script = ExtResource("1_13eim")
+id = "Pantry"
+pantry_item = ExtResource("2_3m277")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_hd7rm")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_iwj1n")
+
+[node name="DebugLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67, 0)
+billboard = 1
+text = "DebugLabel"
+font = ExtResource("2_bpjs8")
+
+[node name="InteractPoint" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 4
+
+[node name="InteractShape" type="CollisionShape3D" parent="InteractPoint"]
+shape = SubResource("BoxShape3D_bpjs8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
