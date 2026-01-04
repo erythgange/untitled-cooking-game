@@ -12,10 +12,13 @@ size = Vector3(1, 0.175, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_2pnu7"]
 size = Vector3(0.9, 0.175, 0.9)
 
-[node name="Plate" type="RigidBody3D"]
+[node name="Plate" type="RigidBody3D" node_paths=PackedStringArray("collision", "debug_label")]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_2rh18")
+max_ingredients = 3
+collision = NodePath("Collision")
+debug_label = NodePath("DebugLabel")
 id = "Plate"
 ItemType = 1
 

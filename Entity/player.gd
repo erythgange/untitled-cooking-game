@@ -36,10 +36,11 @@ func _physics_process(delta: float) -> void:
 		
 	## If holding an item
 	if held_item != null:
-		held_item.global_position = lerp(held_item.global_position, hold_point.global_position, delta_accel * delta)
-		held_item.rotation = lerp(held_item.rotation, Vector3.ZERO, (delta_accel/2) * delta)
-		held_item.linear_velocity.y = held_item.mass
-
+		#held_item.global_position = lerp(held_item.global_position, hold_point.global_position, delta_accel * delta)
+		held_item.global_position = hold_point.global_position
+		#held_item.rotation = hold_point.rotation
+		held_item.rotation = lerp(held_item.rotation, Vector3.ZERO, 2 * delta)
+		
 	move_and_slide()
 
 
@@ -50,29 +51,5 @@ func interact():
 	if target is KitchenNode:
 		target.interact_kitchen_node(self)
 		
-	if held_item == null:	
-		if target is ItemNode:
-			held_item = target
-			
-			if target is IngredientNode:                            
-				pass
-			elif target is PanNode:
-				pass
-			elif target is PlateNode:
-				pass
-
-
-	else: # if holding item
-		if held_item is IngredientNode:
-			pass
-		if held_item is PanNode:
-			
-			if target is KitchenNode and target.id == "Pantry":
-				target.interact_kitchen_node(self)
-				breakpoint
-			if target is IngredientNode:
-				pass
-				
-		if held_item is PlateNode:
-			pass
-	
+	if target is ItemNode:
+		target.interact(self)

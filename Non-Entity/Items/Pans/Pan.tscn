@@ -15,10 +15,13 @@ size = Vector3(1, 0.175, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_rffrq"]
 size = Vector3(0.9, 0.175, 0.9)
 
-[node name="Pan" type="RigidBody3D"]
+[node name="Pan" type="RigidBody3D" node_paths=PackedStringArray("collision", "debug_label")]
 collision_layer = 4
 collision_mask = 15
 script = ExtResource("1_2j2vn")
+max_ingredients = 3
+collision = NodePath("Collision")
+debug_label = NodePath("DebugLabel")
 id = "Pan"
 ItemType = 2
 
@@ -30,8 +33,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67, 0)
 billboard = 1
 text = "DebugLabel"
 font = ExtResource("1_ms7iv")
-
-[node name="InteractPoint" type="Node3D" parent="."]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 

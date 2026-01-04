@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cscdpbt8wn3vr"]
+[gd_scene load_steps=17 format=3 uid="uid://cscdpbt8wn3vr"]
 
 [ext_resource type="Texture2D" uid="uid://cs7g4vw6dp1io" path="res://External/Kenny Prototype Textures/Dark/texture_02.png" id="1_akvua"]
 [ext_resource type="Script" uid="uid://ckn686tysdwaf" path="res://Non-Entity/Maps/debug_scene.gd" id="1_xre04"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bdkf5ak2ow2hu" path="res://Non-Entity/Kitchens/KitchenTypes/Counter.tscn" id="7_todj8"]
 [ext_resource type="PackedScene" uid="uid://pucxf2lubt2" path="res://Non-Entity/Items/Plates/Plate.tscn" id="8_todj8"]
 [ext_resource type="PackedScene" uid="uid://fm3q18m280iv" path="res://Non-Entity/Items/Pans/Pan.tscn" id="9_j7w63"]
+[ext_resource type="PackedScene" uid="uid://dpsor6hgeufal" path="res://Non-Entity/Kitchens/KitchenTypes/ChoppingBoard.tscn" id="10_axf3c"]
 
 [sub_resource type="Environment" id="Environment_akvua"]
 
@@ -47,23 +48,27 @@ mesh = SubResource("PlaneMesh_rec6y")
 [node name="Player" parent="." instance=ExtResource("2_xre04")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.169673, 0)
 
-[node name="Stove" parent="." instance=ExtResource("5_ft6yf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.26396418, 0.5, -5.383228)
-
-[node name="Stove2" parent="." instance=ExtResource("6_ft6yf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2821245, 0.5, 3.1930938)
-
 [node name="Pantry" parent="." instance=ExtResource("7_ono70")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2717023, 0.5, -1.7906232)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9128466, 0.5, -1.2387937)
 
 [node name="Counter" parent="." instance=ExtResource("7_todj8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3617563, 0.5, 0.88362795)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3617563, 0.5, 4.7073784)
 
 [node name="Pan" parent="." instance=ExtResource("9_j7w63")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2277918, 0.0875, -3.1972966)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1724653, 0.0875, -3.7690077)
 
 [node name="Plate" parent="." instance=ExtResource("8_todj8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1292477, 0.0875, -4.1386833)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6177206, 0.0875, 4.5636654)
+
+[node name="ChoppingBoard" parent="." instance=ExtResource("10_axf3c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9997425, 0.5, -4.496876)
+
+[node name="Stove" parent="." instance=ExtResource("5_ft6yf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1941233, 0.5, -4.058259)
 
 [node name="Beef" parent="." instance=ExtResource("5_jh78o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0288906, 0.42749977, 0.23784757)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1811476, 0.1025, 0.23419094)
+kitchen = Array[PackedScene]([null, null, null])
+
+[node name="TrashBin" parent="." instance=ExtResource("6_ft6yf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6266227, 0.5, 4.1992083)

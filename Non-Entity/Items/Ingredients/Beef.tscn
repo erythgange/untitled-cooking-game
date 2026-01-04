@@ -1,30 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://j6atit0h6jtr"]
+[gd_scene load_steps=8 format=3 uid="uid://j6atit0h6jtr"]
 
 [ext_resource type="Script" uid="uid://5j7x6to8ppbf" path="res://Non-Entity/Items/Ingredients/IngredientNode.gd" id="1_ohx6t"]
+[ext_resource type="PackedScene" uid="uid://fm3q18m280iv" path="res://Non-Entity/Items/Pans/Pan.tscn" id="2_dut7s"]
 [ext_resource type="FontFile" uid="uid://d1pae6xy5aw31" path="res://External/Fonts/JetBrainsMono[wght].ttf" id="2_fnqf3"]
+[ext_resource type="PackedScene" uid="uid://dpsor6hgeufal" path="res://Non-Entity/Kitchens/KitchenTypes/ChoppingBoard.tscn" id="2_sj758"]
+[ext_resource type="PackedScene" uid="uid://cdjtd4mtnlkj7" path="res://Non-Entity/Kitchens/KitchenTypes/Stove.tscn" id="3_wlnqe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ohx6t"]
-size = Vector3(0.26, 0.91, 0.69)
+size = Vector3(0.8, 0.2, 0.7)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnqf3"]
+lightmap_size_hint = Vector2i(11, 12)
+size = Vector3(0.8, 0.205, 0.7)
 
-[node name="Beef" type="RigidBody3D"]
+[node name="Beef" type="RigidBody3D" node_paths=PackedStringArray("collision", "debug_label")]
 collision_layer = 4
 collision_mask = 15
 mass = 0.5
 contact_monitor = true
 linear_damp = 1.0
+angular_damp = 10.0
 script = ExtResource("1_ohx6t")
 states = Array[String](["Raw", "Chopped", "Cooked", "Burnt"])
 state_timers = Array[int]([2, 5, 5])
-kitchen = Array[String](["Pantry", "ChoppingBoard", "Stove", "Stove"])
+kitchen = Array[PackedScene]([ExtResource("2_sj758"), ExtResource("3_wlnqe"), ExtResource("3_wlnqe")])
+pan = ExtResource("2_dut7s")
+collision = NodePath("Collision")
+debug_label = NodePath("DebugLabel")
 id = "Beef"
 
 [node name="Collision" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_ohx6t")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.23, 0, 0, 0, 0.855, 0, 0, 0, 0.68, 0, 0, 0)
 mesh = SubResource("BoxMesh_fnqf3")
 
 [node name="DebugLabel" type="Label3D" parent="."]
@@ -33,6 +41,8 @@ billboard = 1
 text = "DebugLabel"
 font = ExtResource("2_fnqf3")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
 [node name="Timer" type="Timer" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[connection signal="timeout" from="Timer" to="." method="_state_progress_timeout"]

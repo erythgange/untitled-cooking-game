@@ -33,7 +33,7 @@ mesh = SubResource("BoxMesh_kpjcp")
 skeleton = NodePath("../..")
 
 [node name="HoldPoint" type="Node3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2878567, -1.6500802)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 
 [node name="InteractBox" type="ShapeCast3D" parent="Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
